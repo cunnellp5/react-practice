@@ -14,12 +14,13 @@ class App extends Component {
         },
         {
           title: "hello im another todo",
-          done: false
+          done: true
         }
       ]
     };
     this.formSubmitted = this.formSubmitted.bind(this);
     this.newTodoChanged = this.newTodoChanged.bind(this);
+    // this.toggleTodoDone = this.toggleTodoDone.bind(this);
   }
 
   formSubmitted(event) {
@@ -35,8 +36,24 @@ class App extends Component {
       ]
     });
   }
+
   newTodoChanged(event) {
     this.setState({ newTodo: event.target.value });
+  }
+
+  toggleTodoDone(event, index) {
+    const todos = [...this.state.todos];
+    todos[index] = { ...todos[index] };
+    todos[index].done = event.target.checked;
+    this.setState({ todos });
+  }
+
+  removeTodo(index) {
+    const todos = [...this.state.todos];
+    todos.splice(index, 1);
+    this.setState({
+      todos
+    });
   }
 
   render() {
@@ -58,8 +75,24 @@ class App extends Component {
         </form>
 
         <ul>
-          {this.state.todos.map(todo => {
-            return <li key={todo.title}>{todo.title}</li>;
+          {this.state.todos.map((todo, index) => {
+            return (
+              <li key={todo.title}>
+                <input
+                  onChange={event => this.toggleTodoDone(event, index)}
+                  type="checkbox"
+                  defaultChecked={todo.done}
+                />
+                <span
+                  style={{
+                    textDecoration: todo.done ? "line-through" : "inherit"
+                  }}
+                >
+                  {todo.title}
+                </span>
+                <button onClick={() => this.removeTodo(index)}>Remove</button>
+              </li>
+            );
           })}
         </ul>
       </div>
