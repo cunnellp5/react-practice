@@ -7,7 +7,16 @@ class App extends Component {
     this.state = {
       message: "Hello worldilocks",
       newTodo: "",
-      todos: []
+      todos: [
+        {
+          title: "Learn React",
+          done: false
+        },
+        {
+          title: "hello im another todo",
+          done: false
+        }
+      ]
     };
     this.formSubmitted = this.formSubmitted.bind(this);
     this.newTodoChanged = this.newTodoChanged.bind(this);
@@ -15,6 +24,15 @@ class App extends Component {
 
   formSubmitted(event) {
     event.preventDefault();
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          title: this.state.newTodo,
+          done: false
+        }
+      ]
+    });
   }
   newTodoChanged(event) {
     this.setState({ newTodo: event.target.value });
@@ -32,6 +50,12 @@ class App extends Component {
 
           <button type="submit">add todo</button>
         </form>
+
+        <ul>
+          {this.state.todos.map(todo => {
+            return <li key={todo.title}>{todo.title}</li>;
+          })}
+        </ul>
       </div>
     );
   }
