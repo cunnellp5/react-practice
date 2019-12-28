@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
+import NewTodoForm from "./newTodoForm/newTodoForm";
+import TodoList from "./todoList/todoList";
 
 class App extends Component {
   constructor() {
@@ -14,7 +16,7 @@ class App extends Component {
         },
         {
           title: "hello im another todo",
-          done: true
+          done: false
         }
       ]
     };
@@ -42,8 +44,10 @@ class App extends Component {
 
   toggleTodoDone(event, index) {
     const todos = [...this.state.todos];
-    todos[index] = { ...todos[index] };
-    todos[index].done = event.target.checked;
+    todos[index] = {
+      ...todos[index],
+      done: event.target.checked
+    };
     this.setState({ todos });
   }
 
@@ -70,41 +74,19 @@ class App extends Component {
       <div>
         <h1>{this.state.message}</h1>
 
-        <form onSubmit={this.formSubmitted}>
-          <label htmlFor="newTodo">New Todo</label>
+        <NewTodoForm
+          formSubmitted={this.formSubmitted}
+          newTodoChanged={this.newTodoChanged}
+          newTodo={this.state.newTodo}
+        />
 
-          <input
-            onChange={this.newTodoChanged}
-            name="newTodo"
-            id="newTodo"
-            value={this.state.newTodo}
-          />
-
-          <button type="submit">add todo</button>
-        </form>
         <button onClick={() => this.allDone()}>All Done</button>
-        <ul>
-          {this.state.todos.map((todo, index) => {
-            return (
-              <li key={todo.title}>
-                <input
-                  onChange={event => this.toggleTodoDone(event, index)}
-                  type="checkbox"
-                  defaultChecked={todo.done}
-                  checked={todo.done}
-                />
-                <span
-                  style={{
-                    textDecoration: todo.done ? "line-through" : "inherit"
-                  }}
-                >
-                  {todo.title}
-                </span>
-                <button onClick={() => this.removeTodo(index)}>Remove</button>
-              </li>
-            );
-          })}
-        </ul>
+
+        <TodoList
+          todos={this.state.todos}
+          toggleTodoDone={this.toggleTodoDone.bind(this)}
+          removeTodo={this.removeTodo.bind(this)}
+        />
       </div>
     );
   }

@@ -20,16 +20,16 @@
 - [x] Check done on a todo to mark it as done
   - [x] Show a line through the todo text
 - [x] Add a button to remove a todo
-- [ ] Add a button to mark all todos as done
-- [ ] What are components?
-- [ ] What are props?
-- [ ] Create a TodoList Component
-- [ ] Pass the todo array down with props
-- [ ] Pass the mark done function down with props
-- [ ] Pass the remove todo function down with props
-- [ ] Create a TodoItem Component
-- [ ] Pass the todo down with props
-- [ ] Pass the mark done function down with props
-- [ ] Pass the remove todo function down with props
-- [ ] Create a Form Component
-- [ ] Pass the add todo function down with props
+- [x] Add a button to mark all todos as done
+- [x] What are components?
+- [x] What are props?
+- [x] Create a TodoList Component
+- [x] Pass the todo array down with props
+- [x] Pass the mark done function down with props
+- [x] Pass the remove todo function down with props
+- [x] Create a TodoItem Component
+- [x] Pass the todo down with props
+- [x] Pass the mark done function down with props
+- [x] Pass the remove todo function down with props
+- [x] Create a Form Component
+- [x] Pass the add todo function down with props
