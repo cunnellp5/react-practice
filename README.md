@@ -4,8 +4,6 @@
 
 [cjs coding gnar-den](https://www.youtube.com/watch?v=vIA130MePY8&list=PLM_i0obccy3uGD0Ba0xiTBSAUlq7aZgdo)
 
-(last left at 00:58)
-
 - [x] What is react?
 - [x] What is JSX?
 - [x] create-react-app

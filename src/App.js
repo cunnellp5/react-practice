@@ -20,7 +20,6 @@ class App extends Component {
     };
     this.formSubmitted = this.formSubmitted.bind(this);
     this.newTodoChanged = this.newTodoChanged.bind(this);
-    // this.toggleTodoDone = this.toggleTodoDone.bind(this);
   }
 
   formSubmitted(event) {
@@ -56,6 +55,16 @@ class App extends Component {
     });
   }
 
+  allDone() {
+    const todos = this.state.todos.map(todo => {
+      return {
+        ...todo,
+        done: true
+      };
+    });
+    this.setState({ todos });
+  }
+
   render() {
     return (
       <div>
@@ -73,7 +82,7 @@ class App extends Component {
 
           <button type="submit">add todo</button>
         </form>
-
+        <button onClick={() => this.allDone()}>All Done</button>
         <ul>
           {this.state.todos.map((todo, index) => {
             return (
@@ -82,6 +91,7 @@ class App extends Component {
                   onChange={event => this.toggleTodoDone(event, index)}
                   type="checkbox"
                   defaultChecked={todo.done}
+                  checked={todo.done}
                 />
                 <span
                   style={{
