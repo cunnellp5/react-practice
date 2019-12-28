@@ -3,7 +3,9 @@ import React from "react";
 const NewTodoForm = props => {
   return (
     <form onSubmit={props.formSubmitted}>
-      <label htmlFor="newTodo">New Todo</label>
+      <label class="todo-label" htmlFor="newTodo">
+        New todo:
+      </label>
 
       <input
         onChange={props.newTodoChanged}
@@ -12,7 +14,9 @@ const NewTodoForm = props => {
         value={props.newTodo}
       />
 
-      <button type="submit">add todo</button>
+      <button class="submit" type="submit">
+        Add
+      </button>
     </form>
   );
 };

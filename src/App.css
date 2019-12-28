@@ -1,3 +1,50 @@
 *:focus {
   outline: none;
 }
+
+.warn {
+  color: red;
+}
+
+.warn-button {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.list-item {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.submit {
+  color: rgb(52, 235, 107);
+  width: 25%;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+#newTodo {
+  width: 50%;
+}
+
+#all-done {
+  width: 25%;
+}
+
+.inline-wrapper {
+  display: flex;
+}
+
+.todo-label {
+  width: 30%;
+}
+
+input.checkbox {
+  height: 40px;
+  width: 40px;
+}

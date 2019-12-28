@@ -7,7 +7,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      message: "Hello worldilocks",
+      message: "Todos 📝",
       newTodo: "",
       todos: [
         {
@@ -74,13 +74,17 @@ class App extends Component {
       <div>
         <h1>{this.state.message}</h1>
 
-        <NewTodoForm
-          formSubmitted={this.formSubmitted}
-          newTodoChanged={this.newTodoChanged}
-          newTodo={this.state.newTodo}
-        />
+        <div className="inline-wrapper">
+          <NewTodoForm
+            formSubmitted={this.formSubmitted}
+            newTodoChanged={this.newTodoChanged}
+            newTodo={this.state.newTodo}
+          />
 
-        <button onClick={() => this.allDone()}>All Done</button>
+          <button id="all-done" onClick={() => this.allDone()}>
+            All Done
+          </button>
+        </div>
 
         <TodoList
           todos={this.state.todos}
