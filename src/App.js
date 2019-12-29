@@ -9,7 +9,7 @@ const App = () => {
   return (
     <Router>
       <div>
-        <ul>
+        <ul className="hide-decor horizontal-space">
           <li>
             <Link to="/">Home</Link>
           </li>

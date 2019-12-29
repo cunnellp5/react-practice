@@ -13,9 +13,18 @@
 }
 
 .list-item {
-  list-style-type: none;
   display: flex;
   align-items: center;
+}
+
+.hide-decor,
+.list-item {
+  list-style-type: none;
+}
+
+.horizontal-space {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .submit {

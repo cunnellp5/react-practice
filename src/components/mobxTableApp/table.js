@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import "./../../App.css";
+import MobControls from "./controls";
+import { withRouter } from "react-router-dom"; // optional, see Footnote 2
+import { inject, observer } from "mobx-react";
+
+// @inject("dataStore")
+// @withRouter // optional, see Footnote 2
+// @observer
 
 class MobTable extends Component {
   constructor() {
     super();
     this.state = {
-      message: "hello from the table route"
+      message: "Mobx Table 🏓"
     };
   }
 
@@ -13,6 +19,8 @@ class MobTable extends Component {
     return (
       <div>
         <h1>{this.state.message}</h1>
+        <hr />
+        <MobControls />
       </div>
     );
   }
