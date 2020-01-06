@@ -5,14 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { Provider } from "mobx-react";
-import employeeList from "./store/tableStore";
 
-const stores = {
-  employeeList
-};
+import TableStore from "./store/tableStore";
 
 ReactDOM.render(
-  <Provider {...stores}>
+  <Provider TableStore={TableStore}>
     <App />
   </Provider>,
   document.getElementById("root")

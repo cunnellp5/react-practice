@@ -1,7 +1,7 @@
-import { observable, decorate } from "mobx";
+import { observable, action, computed } from "mobx";
 
 class TableStore {
-  employeeList = [
+  @observable employeeList = [
     {
       name: "John doe",
       salary: 150
@@ -15,10 +15,14 @@ class TableStore {
       salary: 1
     }
   ];
-}
 
-decorate(TableStore, {
-  employeeList: observable
-});
+  @action addEmployee = employee => {
+    this.employeeList.push(employee);
+  };
+
+  @computed get employeeCount() {
+    return this.employeeList.length;
+  }
+}
 
 export default new TableStore();
