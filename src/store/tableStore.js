@@ -18,10 +18,23 @@ class TableStore {
 
   @action addEmployee = employee => {
     this.employeeList.push(employee);
+    return this.employeeList;
+  };
+
+  @action removeEmployee = id => {
+    this.employeeList.splice(id, 1);
+    return this.employeeList;
   };
 
   @computed get employeeCount() {
     return this.employeeList.length;
+  }
+
+  @computed get list() {
+    return this.employeeList.map(emp => ({
+      name: emp.name,
+      salary: emp.salary
+    }));
   }
 }
 
