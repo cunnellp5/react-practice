@@ -11,10 +11,8 @@ import { inject, observer } from "mobx-react";
 class Todo extends Component {
   constructor(props) {
     super(props);
-    const { TodoStore } = this.props;
     this.state = {
-      message: "Todos 📝",
-      newTodo: ""
+      message: "Todos 📝"
     };
     this.formSubmitted = this.formSubmitted.bind(this);
     this.newTodoChanged = this.newTodoChanged.bind(this);
@@ -22,46 +20,48 @@ class Todo extends Component {
 
   formSubmitted(event) {
     event.preventDefault();
-    this.props.TodoStore.addTodo({
-      title: this.state.newTodo,
+    const { TodoStore } = this.props;
+    TodoStore.addTodo({
+      title: TodoStore.newTodo,
       done: false
     });
+    TodoStore.changeTodo("");
   }
 
   newTodoChanged(event) {
-    this.setState({ newTodo: event.target.value });
+    const { TodoStore } = this.props;
+    TodoStore.changeTodo(event.target.value);
+    // this.setState({ newTodo: event.target.value });
   }
 
   toggleTodoDone(event, index) {
-    const todos = [...this.state.todos];
-    todos[index] = {
-      ...todos[index],
-      done: event.target.checked
-    };
-    this.setState({ todos });
+    // const todos = [...this.state.todos];
+    // todos[index] = {
+    //   ...todos[index],
+    //   done: event.target.checked
+    // };
+    // this.setState({ todos });
   }
 
   removeTodo(index) {
-    const todos = [...this.state.todos];
-    todos.splice(index, 1);
-    this.setState({
-      todos
-    });
+    const { TodoStore } = this.props;
+    TodoStore.removeTodo(index);
   }
 
   allDone() {
-    const todos = this.state.todos.map(todo => {
-      return {
-        ...todo,
-        done: true
-      };
-    });
-    this.setState({ todos });
+    const { TodoStore } = this.props;
+    TodoStore.allDone();
+    // const todos = this.state.todos.map(todo => {
+    //   return {
+    //     ...todo,
+    //     done: true
+    //   };
+    // });
+    // this.setState({ todos });
   }
 
   render() {
     const { TodoStore } = this.props;
-    console.log(TodoStore.list);
     return (
       <div>
         <h1>{this.state.message}</h1>
@@ -70,7 +70,7 @@ class Todo extends Component {
           <NewTodoForm
             formSubmitted={this.formSubmitted}
             newTodoChanged={this.newTodoChanged}
-            newTodo={this.state.newTodo}
+            newTodo={TodoStore.newTodo}
           />
 
           <button id="all-done" onClick={() => this.allDone()}>
@@ -79,7 +79,7 @@ class Todo extends Component {
         </div>
 
         <TodoList
-          todos={TodoStore.list}
+          todos={TodoStore.todoList}
           toggleTodoDone={this.toggleTodoDone.bind(this)}
           removeTodo={this.removeTodo.bind(this)}
         />

@@ -12,7 +12,7 @@ class TodoStore {
     }
   ];
 
-  @observalbe newTodo = "";
+  @observable newTodo = "";
 
   @action addTodo = todo => {
     this.todoList.push(todo);
@@ -20,7 +20,23 @@ class TodoStore {
   };
 
   @action removeTodo = id => {
-    this.todoList.slice(id, 1);
+    console.log(this.todoList, "before");
+    this.todoList.splice(id, 1);
+    console.log(this.todoList);
+    return this.todoList;
+  };
+
+  @action changeTodo = string => {
+    this.newTodo = string;
+  };
+
+  @action allDone = () => {
+    this.todoList = this.todoList.map(todo => {
+      return {
+        ...todo,
+        done: true
+      };
+    });
   };
 
   @computed get list() {
