@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import MobControls from "./controls";
-import { withRouter } from "react-router-dom"; // optional, see Footnote 2
+import { withRouter } from "react-router-dom";
 import { inject, observer } from "mobx-react";
-// import tableStore from "../../store/tableStore";
 
 @inject("TableStore")
 @withRouter

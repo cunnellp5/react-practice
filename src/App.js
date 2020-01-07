@@ -4,10 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Todo from "./components/todoApp/todo/todo";
 import Home from "./components/home/home";
 import MobTable from "./components/mobxTableApp/table";
-import { inject, observer } from "mobx-react";
 
-@inject("TableStore")
-@observer
 class App extends Component {
   render() {
     // const { TableStore } = this.props;

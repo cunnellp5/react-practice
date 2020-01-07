@@ -2,23 +2,19 @@ import React, { Component } from "react";
 import "../../../App.css";
 import NewTodoForm from "./../newTodoForm/newTodoForm";
 import TodoList from "./../todoList/todoList";
+import { withRouter } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
+@inject("TodoStore")
+@withRouter
+@observer
 class Todo extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { TodoStore } = this.props;
     this.state = {
       message: "Todos 📝",
-      newTodo: "",
-      todos: [
-        {
-          title: "Learn React",
-          done: false
-        },
-        {
-          title: "hello im another todo",
-          done: false
-        }
-      ]
+      newTodo: ""
     };
     this.formSubmitted = this.formSubmitted.bind(this);
     this.newTodoChanged = this.newTodoChanged.bind(this);
@@ -26,15 +22,9 @@ class Todo extends Component {
 
   formSubmitted(event) {
     event.preventDefault();
-    this.setState({
-      newTodo: "",
-      todos: [
-        ...this.state.todos,
-        {
-          title: this.state.newTodo,
-          done: false
-        }
-      ]
+    this.props.TodoStore.addTodo({
+      title: this.state.newTodo,
+      done: false
     });
   }
 
@@ -70,6 +60,8 @@ class Todo extends Component {
   }
 
   render() {
+    const { TodoStore } = this.props;
+    console.log(TodoStore.list);
     return (
       <div>
         <h1>{this.state.message}</h1>
@@ -87,7 +79,7 @@ class Todo extends Component {
         </div>
 
         <TodoList
-          todos={this.state.todos}
+          todos={TodoStore.list}
           toggleTodoDone={this.toggleTodoDone.bind(this)}
           removeTodo={this.removeTodo.bind(this)}
         />

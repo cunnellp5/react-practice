@@ -8,7 +8,6 @@ import { inject, observer } from "mobx-react";
 class MobControls extends Component {
   constructor(props) {
     super(props);
-    const { TableStore } = this.props;
   }
 
   addEmployee = () => {
