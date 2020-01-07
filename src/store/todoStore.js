@@ -20,9 +20,7 @@ class TodoStore {
   };
 
   @action removeTodo = id => {
-    console.log(this.todoList, "before");
     this.todoList.splice(id, 1);
-    console.log(this.todoList);
     return this.todoList;
   };
 
@@ -37,6 +35,15 @@ class TodoStore {
         done: true
       };
     });
+  };
+
+  @action toggle = (checked, index) => {
+    const todos = [...this.todoList];
+    todos[index] = {
+      ...todos[index],
+      done: checked
+    };
+    this.todoList = todos;
   };
 
   @computed get list() {

@@ -31,16 +31,11 @@ class Todo extends Component {
   newTodoChanged(event) {
     const { TodoStore } = this.props;
     TodoStore.changeTodo(event.target.value);
-    // this.setState({ newTodo: event.target.value });
   }
 
   toggleTodoDone(event, index) {
-    // const todos = [...this.state.todos];
-    // todos[index] = {
-    //   ...todos[index],
-    //   done: event.target.checked
-    // };
-    // this.setState({ todos });
+    const { TodoStore } = this.props;
+    TodoStore.toggle(event.target.checked, index);
   }
 
   removeTodo(index) {
@@ -51,13 +46,6 @@ class Todo extends Component {
   allDone() {
     const { TodoStore } = this.props;
     TodoStore.allDone();
-    // const todos = this.state.todos.map(todo => {
-    //   return {
-    //     ...todo,
-    //     done: true
-    //   };
-    // });
-    // this.setState({ todos });
   }
 
   render() {
